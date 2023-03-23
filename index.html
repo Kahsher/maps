@@ -6,10 +6,8 @@
 	<body>
 		<div id="map" style="height: 100vh; width: 100vw;"></div>
 		<script>
-			var oleirosCoord = {
-				latlong: [39.92059734720375, -7.902253607027126]
-			};
-			var map = L.map('map').setView(oleirosCoord.latlong, 15);
+			var map = L.map('map');
+			map.setView([39.921161, -7.903330], 15); //TODO make map coord a variable
 
 			L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
 				attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
