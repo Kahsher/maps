@@ -51,8 +51,7 @@
 		};
 
 		var overlays = {
-			'Markers': markers,
-			'Area': areas
+			'Markers': markers
 		};
 
 		var layerControl = L.control.layers(baseLayers, overlays).addTo(map);
@@ -64,7 +63,6 @@
 					return {
 						color: "#0000ff"
 					};
-				break;
 			}
 		}).addTo(map);
 		</script>
