@@ -30,16 +30,8 @@
 			var map = L.map('map', {
 				center: [39.921161, -7.903330],
 				zoom: 15,
-				layers: [googleTerrain]
+				layers: [googleStreets, googleHybrid, googleSat, googleTerrain]
 			});
-			
-			var baseMaps = {
-				"GoogleTerrain": googleTerrain,
-				"GoogleSat": googleSat,
-				"GoogleHybrid": googleHybrid
-			};
-			
-			var layerControl = L.control.layers(baseMaps, {}).addTo(map);
 
 			L.marker([39.921161, -7.903330]).addTo(map)
 				.bindPopup('Localização-teste')
