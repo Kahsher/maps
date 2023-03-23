@@ -7,10 +7,9 @@
 		<div id="map" style="height: 100vh; width: 100vw;"></div>
 		<script>
 			var oleirosCoord = {
-				x: [39.92059734720375, -0.09], // array - containing float coord value and float zoom level
-				y: -7.902253607027126
+				latlong: [39.92059734720375, -7.902253607027126]
 			};
-			var map = L.map('map').setView(oleirosCoord.x, oleirosCoord.y);
+			var map = L.map('map').setView(oleirosCoord.latlong, 15);
 
 			L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
 				attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
