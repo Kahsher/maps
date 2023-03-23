@@ -1,45 +1,43 @@
-<html>
-	<head>
-		<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI=" crossorigin="" />
-		<script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js" integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM=" crossorigin=""></script>
-	</head>
-	<body>
+<body>
 		<div id="map" style="height: 90vh; width: 90vw;"></div>
 		<script>
-			var poisLayerGroup = L.layerGroup();
+			var markers = L.layerGroup();
 
-			var poi1 = L.marker([39.921161, -7.903130]).bindPopup('POI - 1').addTo(poisLayerGroup);
-			var poi2 = L.marker([39.921161, -7.903230]).bindPopup('POI - 2').addTo(poisLayerGroup);
-			var poi3 = L.marker([39.921161, -7.903330]).bindPopup('POI - 3').addTo(poisLayerGroup);
-			var poi4 = L.marker([39.921161, -7.903430]).bindPopup('POI - 4').addTo(poisLayerGroup);
-			
-			var mbAttr = 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>';
-			var mbUrl = 'https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw';
+			var teste = L.marker([39.921161, -7.903330]).bindPopup('Localização-teste').addTo(markers);
 
-			var osm = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+			const mbAttr = 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>';
+			const mbUrl = 'https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw';
+
+			const streets = L.tileLayer(mbUrl, {id: 'mapbox/streets-v11', tileSize: 512, zoomOffset: -1, attribution: mbAttr});
+
+			const osm = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
 				maxZoom: 19,
 				attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
 			});
 
-			var map = L.map('map', {
-				center: [339.921161, -7.903130],
-				zoom: 10,
-				layers: [osm, poisLayerGroup]
-			});
+			var map = L.map('map');
+			map.setView([39.921161, -7.903330], 15); //TODO make map coord a variable
 
-			var baseLayers = {
-				'OpenStreetMap': osm
+			L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+				attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+			}).addTo(map);
+
+			L.marker([39.921161, -7.903330]).addTo(map)
+				.bindPopup('Localização-teste')
+				.openPopup();
+			const baseLayers = {
+				'OpenStreetMap': osm,
+				'Streets': streets
 			};
 
-			var overlays = {
-				'Pontos de interesse': cities
+			const overlays = {
+				'Markers': markers
 			};
 
-			var layerControl = L.control.layers(baseLayers, overlays).addTo(map);
-
-			var satellite = L.tileLayer(mbUrl, { id: 'mapbox/satellite-v9', tileSize: 512, zoomOffset: -1, attribution: mbAttr });
+			const layerControl = L.control.layers(baseLayers, overlays).addTo(map);
+			const satellite = L.tileLayer(mbUrl, {id: 'mapbox/satellite-v9', tileSize: 512, zoomOffset: -1, attribution: mbAttr});
 			layerControl.addBaseLayer(satellite, 'Satellite');
-
+			layerControl.addOverlay(markers, 'Markers');
 		</script>
 	</body>
 </html>
