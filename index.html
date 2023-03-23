@@ -12,7 +12,7 @@
 			var poi2 = L.marker([39.921161, -7.903230]).bindPopup('POI - 2').addTo(poisLayerGroup);
 			var poi3 = L.marker([39.921161, -7.903330]).bindPopup('POI - 3').addTo(poisLayerGroup);
 			var poi4 = L.marker([39.921161, -7.903430]).bindPopup('POI - 4').addTo(poisLayerGroup);
-
+			
 			var mbAttr = 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>';
 			var mbUrl = 'https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw';
 
@@ -22,8 +22,8 @@
 			});
 
 			var map = L.map('map', {
-				center: [39.921161, -7.903330],
-				zoom: 15,
+				center: [339.921161, -7.903130],
+				zoom: 10,
 				layers: [osm, poisLayerGroup]
 			});
 
@@ -32,13 +32,14 @@
 			};
 
 			var overlays = {
-				'poisLayerGroup': poisLayerGroup
+				'Pontos de interesse': cities
 			};
 
 			var layerControl = L.control.layers(baseLayers, overlays).addTo(map);
 
 			var satellite = L.tileLayer(mbUrl, { id: 'mapbox/satellite-v9', tileSize: 512, zoomOffset: -1, attribution: mbAttr });
 			layerControl.addBaseLayer(satellite, 'Satellite');
+
 		</script>
 	</body>
 </html>
