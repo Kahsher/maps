@@ -14,39 +14,24 @@
 				maxZoom: 20,
 				attribution: '© OpenStreetMap'
 			});
-
-			var googleStreets = L.tileLayer('http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}',{
-				maxZoom: 20,
-				subdomains:['mt0','mt1','mt2','mt3']
-			});
 			var googleHybrid = L.tileLayer('http://{s}.google.com/vt/lyrs=s,h&x={x}&y={y}&z={z}',{
 				maxZoom: 20,
 				subdomains:['mt0','mt1','mt2','mt3']
 			});
-
 			var googleSat = L.tileLayer('http://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}',{
 				maxZoom: 20,
 				subdomains:['mt0','mt1','mt2','mt3']
 			});
-
-			var googleTerrain = L.tileLayer('http://{s}.google.com/vt/lyrs=p&x={x}&y={y}&z={z}',{
-				maxZoom: 20,
-				subdomains:['mt0','mt1','mt2','mt3']
-			});
-
-
 			var map = L.map('map', {
 				center: [39.921161, -7.903330],
 				zoom: 10,
-				layers: [osm, googleTerrain, googleStreets, googleHybrid, googleSat]
+				layers: [osm, googleHybrid, googleSat]
 			});
 
 			var baseLayers = {
-				'OpenStreetMap': osm,
-				'Google Terrain': googleTerrain,
-				'Google Streets': googleStreets,
-				'Google Hybrid': googleHybrid,
-				'Google Sattelite': googleSat
+				'Sattelite': googleSat,
+				'Hybrid': googleHybrid,
+				'Street': osm,
 			};
 
 			var overlays = {
