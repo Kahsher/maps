@@ -33,14 +33,14 @@
 			var map = L.map('map', {
 				center: [39.921161, -7.903330],
 				zoom: 10,
-				layers: [googleTerrain, markers]
+				layers: [googleTerrain, googleStreets, googleHybrid, googleSat]
 			});
 
 			var baseLayers = {
 				'Google Terrain': googleTerrain,
 				'Google Streets': googleStreets,
 				'Google Hybrid': googleHybrid,
-				'Google Sattelite' :googleSat
+				'Google Sattelite': googleSat
 			};
 
 			var overlays = {
