@@ -6,16 +6,39 @@
 	<body>
 		<div id="map" style="height: 90vh; width: 90vw;"></div>
 		<script>
-			var map = L.map('map');
-			map.setView([39.921161, -7.903330], 15); //TODO make map coord a variable
+			var poisLayerGroup = L.layerGroup();
 
-			L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-				attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-			}).addTo(map);
+			var poi1 = L.marker([39.921161, -7.903130]).bindPopup('POI - 1').addTo(poisLayerGroup);
+			var poi2 = L.marker([39.921161, -7.903230]).bindPopup('POI - 2').addTo(poisLayerGroup);
+			var poi3 = L.marker([39.921161, -7.903330]).bindPopup('POI - 3').addTo(poisLayerGroup);
+			var poi4 = L.marker([39.921161, -7.903430]).bindPopup('POI - 4').addTo(poisLayerGroup);
 
-			L.marker([39.921161, -7.903330]).addTo(map)
-				.bindPopup('Localização-teste')
-				.openPopup();
+			var mbAttr = 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>';
+			var mbUrl = 'https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw';
+
+			var osm = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+				maxZoom: 19,
+				attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+			});
+
+			var map = L.map('map', {
+				center: [39.921161, -7.903330],
+				zoom: 15,
+				layers: [osm, poisLayerGroup]
+			});
+
+			var baseLayers = {
+				'OpenStreetMap': osm
+			};
+
+			var overlays = {
+				'poisLayerGroup': poisLayerGroup
+			};
+
+			var layerControl = L.control.layers(baseLayers, overlays).addTo(map);
+
+			var satellite = L.tileLayer(mbUrl, { id: 'mapbox/satellite-v9', tileSize: 512, zoomOffset: -1, attribution: mbAttr });
+			layerControl.addBaseLayer(satellite, 'Satellite');
 		</script>
 	</body>
 </html>
