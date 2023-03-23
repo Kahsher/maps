@@ -32,22 +32,6 @@
 			layers: [cyclosm, googleHybrid, googleSat]
 		});
 
-		var areas = [{
-				"type": "Feature",
-				"properties": {
-					"name": "Area1"
-				},
-				"geometry": {
-					"type": "Polygon",
-					"coordinates": [[
-							[39.921161, -7.903330],
-							[39.961161, -7.963330],
-							[39.981161, -7.983330]
-					]]
-				}
-			}
-		];
-
 		var baseLayers = {
 			'Sattelite': googleSat,
 			'Hybrid': googleHybrid,
@@ -59,16 +43,7 @@
 		};
 
 		var layerControl = L.control.layers(baseLayers, overlays).addTo(map);
-			
-		L.geoJSON(areas, {
-			style: function (feature) {
-				switch (feature.properties.name) {
-				case 'Area1':
-					return {
-						color: "#0000ff"
-					};
-			}
-		}).addTo(map);
+		
 		</script>
 	</body>
 </html>
