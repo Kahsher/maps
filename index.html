@@ -7,11 +7,39 @@
 		<div id="map" style="height: 100%; width: 100%; overflow:hidden;"></div>
 		<script>
 			var map = L.map('map');
-			map.setView([39.921161, -7.903330], 15); //TODO make map coord a variable
-
-			L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-				attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-			}).addTo(map);
+			
+			var googleStreets = L.tileLayer('http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}',{
+				maxZoom: 20,
+				subdomains:['mt0','mt1','mt2','mt3']
+			});
+			var googleHybrid = L.tileLayer('http://{s}.google.com/vt/lyrs=s,h&x={x}&y={y}&z={z}',{
+				maxZoom: 20,
+				subdomains:['mt0','mt1','mt2','mt3']
+			});
+			
+			var googleSat = L.tileLayer('http://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}',{
+				maxZoom: 20,
+				subdomains:['mt0','mt1','mt2','mt3']
+			});
+			
+			var googleTerrain = L.tileLayer('http://{s}.google.com/vt/lyrs=p&x={x}&y={y}&z={z}',{
+				maxZoom: 20,
+				subdomains:['mt0','mt1','mt2','mt3']
+			});
+			
+			var map = L.map('map', {
+				center: [39.921161, -7.903330],
+				zoom: 15,
+				layers: [googleTerrain]
+			});
+			
+			var baseMaps = {
+				"GoogleTerrain": googleTerrain,
+				"GoogleSat": googleSat,
+				"GoogleHybrid": googleHybrid
+			};
+			
+			var layerControl = L.control.layers(baseMaps, {}).addTo(map);
 
 			L.marker([39.921161, -7.903330]).addTo(map)
 				.bindPopup('Localização-teste')
