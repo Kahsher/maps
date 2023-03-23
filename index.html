@@ -6,39 +6,67 @@
 	<body>
 		<div id="map" style="height: 100%; width: 100%; overflow:hidden;"></div>
 		<script>
-			var markers = L.layerGroup();
+		var markers = L.layerGroup();
 
-			var poi1 = L.marker([39.921161, -7.903330]).bindPopup('POI').addTo(markers);
+		var poi1 = L.marker([39.921161, -7.903330]).bindPopup('POI').addTo(markers);
+
+		var osm = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+			maxZoom: 20,
+			attribution: '© OpenStreetMap'
+		});
+		var googleHybrid = L.tileLayer('http://{s}.google.com/vt/lyrs=s,h&x={x}&y={y}&z={z}', {
+			maxZoom: 20,
+			subdomains: ['mt0', 'mt1', 'mt2', 'mt3']
+		});
+		var googleSat = L.tileLayer('http://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}', {
+			maxZoom: 20,
+			subdomains: ['mt0', 'mt1', 'mt2', 'mt3']
+		});
+		var map = L.map('map', {
+			center: [39.921161, -7.903330],
+			zoom: 10,
+			layers: [osm, googleHybrid, googleSat]
+		});
+
+		var areas = [{
+				"type": "Feature",
+				"properties": {
+					"name": "Area1"
+				},
+				"geometry": {
+					"type": "Polygon",
+					"coordinates": [[
+							[39.921161, -7.903330],
+							[39.961161, -7.963330],
+							[39.981161, -7.983330]
+					]]
+				}
+			}
+		];
+
+		var baseLayers = {
+			'Sattelite': googleSat,
+			'Hybrid': googleHybrid,
+			'Street': osm,
+		};
+
+		var overlays = {
+			'Markers': markers,
+			'Area': areas
+		};
+
+		var layerControl = L.control.layers(baseLayers, overlays).addTo(map);
 			
-			var osm = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-				maxZoom: 20,
-				attribution: '© OpenStreetMap'
-			});
-			var googleHybrid = L.tileLayer('http://{s}.google.com/vt/lyrs=s,h&x={x}&y={y}&z={z}',{
-				maxZoom: 20,
-				subdomains:['mt0','mt1','mt2','mt3']
-			});
-			var googleSat = L.tileLayer('http://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}',{
-				maxZoom: 20,
-				subdomains:['mt0','mt1','mt2','mt3']
-			});
-			var map = L.map('map', {
-				center: [39.921161, -7.903330],
-				zoom: 10,
-				layers: [osm, googleHybrid, googleSat]
-			});
-
-			var baseLayers = {
-				'Sattelite': googleSat,
-				'Hybrid': googleHybrid,
-				'Street': osm,
-			};
-
-			var overlays = {
-				'Markers': markers
-			};
-
-			var layerControl = L.control.layers(baseLayers, overlays).addTo(map);
+		L.geoJSON(areas, {
+			style: function (feature) {
+				switch (feature.properties.name) {
+				case 'Area1':
+					return {
+						color: "#0000ff"
+					};
+				break;
+			}
+		}).addTo(map);
 		</script>
 	</body>
 </html>
