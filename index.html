@@ -12,7 +12,11 @@
 
 		var osm = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
 			maxZoom: 20,
-			attribution: '© OpenStreetMap'
+			attribution: 'OpenStreetMap'
+		});
+		var cyclosm = L.tileLayer('https://{s}.tile-cyclosm.openstreetmap.fr/[cyclosm|cyclosm-lite]/{z}/{x}/{y}.png', {
+			maxZoom: 20,
+			attribution 'CyclOSM'
 		});
 		var googleHybrid = L.tileLayer('http://{s}.google.com/vt/lyrs=s,h&x={x}&y={y}&z={z}', {
 			maxZoom: 20,
@@ -25,7 +29,7 @@
 		var map = L.map('map', {
 			center: [39.921161, -7.903330],
 			zoom: 10,
-			layers: [osm, googleHybrid, googleSat]
+			layers: [cyclosm, googleHybrid, googleSat]
 		});
 
 		var areas = [{
@@ -47,7 +51,7 @@
 		var baseLayers = {
 			'Sattelite': googleSat,
 			'Hybrid': googleHybrid,
-			'Street': osm,
+			'Street': cyclosm,
 		};
 
 		var overlays = {
