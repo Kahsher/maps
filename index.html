@@ -6,8 +6,10 @@
 	<body>
 		<div id="map" style="height: 100%; width: 100%; overflow:hidden;"></div>
 		<script>
-			var map = L.map('map');
-			
+			var markers = L.layerGroup();
+
+			var poi1 = L.marker([[39.921161, -7.903330]]).bindPopup('POI').addTo(markers);
+
 			var googleStreets = L.tileLayer('http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}',{
 				maxZoom: 20,
 				subdomains:['mt0','mt1','mt2','mt3']
@@ -16,26 +18,36 @@
 				maxZoom: 20,
 				subdomains:['mt0','mt1','mt2','mt3']
 			});
-			
+
 			var googleSat = L.tileLayer('http://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}',{
 				maxZoom: 20,
 				subdomains:['mt0','mt1','mt2','mt3']
 			});
-			
+
 			var googleTerrain = L.tileLayer('http://{s}.google.com/vt/lyrs=p&x={x}&y={y}&z={z}',{
 				maxZoom: 20,
 				subdomains:['mt0','mt1','mt2','mt3']
 			});
-			
+
+
 			var map = L.map('map', {
 				center: [39.921161, -7.903330],
-				zoom: 15,
-				layers: [googleStreets, googleHybrid, googleSat, googleTerrain]
+				zoom: 10,
+				layers: [googleTerrain, markers]
 			});
 
-			L.marker([39.921161, -7.903330]).addTo(map)
-				.bindPopup('Localização-teste')
-				.openPopup();
+			var baseLayers = {
+				'Google Terrain': googleTerrain,
+				'Google Streets': googleStreets,
+				'Google Hybrid': googleHybrid,
+				'Google Sattelite' :googleSat
+			};
+
+			var overlays = {
+				'Markers': markers
+			};
+
+			var layerControl = L.control.layers(baseLayers, overlays).addTo(map);
 		</script>
 	</body>
 </html>
