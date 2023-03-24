@@ -23,30 +23,32 @@
 			var poi1 = L.marker([39.921161, -7.903330]).bindPopup('POI').addTo(markers);
 
 			var osm = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-				maxZoom: 20,
+				maxZoom: 15,
 				attribution: '© OpenStreetMap'
 			});
 			var googleHybrid = L.tileLayer('http://{s}.google.com/vt/lyrs=s,h&x={x}&y={y}&z={z}', {
-				maxZoom: 20,
+				maxZoom: 15,
 				subdomains: ['mt0', 'mt1', 'mt2', 'mt3'],
 				attribution: '© GoogleMaps'
 			});
 			var googleSat = L.tileLayer('http://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}', {
-				maxZoom: 20,
+				maxZoom: 15,
 				subdomains: ['mt0', 'mt1', 'mt2', 'mt3'],
 				attribution: '© GoogleMaps'
 			});
 			var map = L.map('map', {
 				center: [39.921161, -7.903330],
-				zoom: 10,
+				zoom: 15,
 				layers: [osm, googleHybrid, googleSat]
 			});
+			map.fitWorld();
 
 			var baseLayers = {
 				'Sattelite': googleSat,
 				'Hybrid': googleHybrid,
 				'Street': osm
 			};
+			map.addLayer(markers);
 
 			var overlays = {
 				'Markers': markers
