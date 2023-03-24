@@ -23,16 +23,16 @@
 			var poi1 = L.marker([39.921161, -7.903330]).bindPopup('POI').addTo(markers);
 
 			var osm = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-				maxZoom: 15,
+				maxZoom: 18,
 				attribution: '© OpenStreetMap'
 			});
 			var googleHybrid = L.tileLayer('http://{s}.google.com/vt/lyrs=s,h&x={x}&y={y}&z={z}', {
-				maxZoom: 15,
+				maxZoom: 18,
 				subdomains: ['mt0', 'mt1', 'mt2', 'mt3'],
 				attribution: '© GoogleMaps'
 			});
 			var googleSat = L.tileLayer('http://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}', {
-				maxZoom: 15,
+				maxZoom: 18,
 				subdomains: ['mt0', 'mt1', 'mt2', 'mt3'],
 				attribution: '© GoogleMaps'
 			});
@@ -41,7 +41,6 @@
 				zoom: 15,
 				layers: [osm, googleHybrid, googleSat]
 			});
-			map.fitWorld();
 
 			var baseLayers = {
 				'Sattelite': googleSat,
