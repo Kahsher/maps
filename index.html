@@ -452,7 +452,9 @@
 
 			var markers = L.layerGroup();
 
-			var poi1 = L.marker([39.921161, -7.903330]).bindPopup('POI').addTo(markers);
+			var poi1 = L.marker([39.9082, -7.8023]).bindPopup('Medronho').addTo(markers);
+			var poi1 = L.marker([39.9210, -7.7951]).bindPopup('Anti-medronho').addTo(markers);
+			var poi1 = L.marker([39.8889, -7.7794]).bindPopup('Máfia').addTo(markers);
 
 			var osm = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
 				maxZoom: 18,
@@ -490,10 +492,10 @@
 			L.geoJSON(geoMap, {
 				style: function (feature) {
 					if (feature.properties.gamearea) {
-						return { color: "#ff0000" };
+						return { color: "#ff0000", opacity: 0.1 };
 					}
 					else {
-						return { color: "#0000ff" };
+						return { color: "#0000ff", opacity: 0.1 };
 					}
 				}
 			}).addTo(map);
@@ -501,10 +503,10 @@
 			L.geoJSON(geoNonPlayArea, {
 				style: function (feature) {
 					if (feature.properties.gamearea) {
-						return { color: "#ff0000" };
+						return { color: "#ff0000", opacity: 0.1 };
 					}
 					else {
-						return { color: "#0000ff" };
+						return { color: "#0000ff", opacity: 0.1 };
 					}
 				}
 			}).addTo(map);
