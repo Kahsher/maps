@@ -511,6 +511,62 @@
 				}
 			}).addTo(map);
 			
+			var lat1 = 39.8825;
+			var lat2 = 39.9309;
+			var lng1 = -7.8180;
+			var lng2 = -7.7580;
+
+
+			var lng = lng1
+			for (i = 0; i < 21; i++) {
+
+				var objGeo = {
+					"type": "Feature",
+					"properties": {},
+					"geometry": {
+						"coordinates": [
+							[
+								lng,
+								lat1
+							],
+							[
+								lng,
+								lat2
+							]
+						],
+						"type": "LineString"
+					}
+				};
+				L.geoJSON(objGeo).addTo(map);
+				lng = lng + 0.0030;
+			}
+
+
+			var lat = lat1;
+
+			for (i = 0; i < 23; i++) {
+
+				var objGeo = {
+					"type": "Feature",
+					"properties": {},
+					"geometry": {
+						"coordinates": [
+							[
+								lng1,
+								lat
+							],
+							[
+								lng2,
+								lat
+							]
+						],
+						"type": "LineString"
+					}
+				};
+				L.geoJSON(objGeo).addTo(map);
+				lat = lat + 0.0022;
+			}
+			
 			map.on('click', function(e) {
 				var coord = e.latlng;
 				var lat = coord.lat;
