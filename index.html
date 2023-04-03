@@ -175,7 +175,6 @@
 						]
 					],
 					"type": "Polygon"
-
 				}
 			};
 
@@ -198,23 +197,6 @@
 				opacity: 1,
 				fillOpacity: 0.8
 			};
-
-			L.geoJSON(geoMap, {
-				style: function (feature) {
-					if (feature.properties.gamearea) {
-						return { color: "#ff0000" };
-					}
-					else {
-						return { color: "#0000ff" };
-					}
-				}
-			}).addTo(map);
-
-			L.geoJSON(geoNonPlayArea, {
-				pointToLayer: function (feature, latlng) {
-					return L.circleMarker(latlng, nonPlayAreaOptions);
-				}
-			}).addTo(map);
 
 			var markers = L.layerGroup();
 
@@ -252,6 +234,23 @@
 			};
 
 			var layerControl = L.control.layers(baseLayers, overlays).addTo(map);
+
+			L.geoJSON(geoMap, {
+				style: function (feature) {
+					if (feature.properties.gamearea) {
+						return { color: "#ff0000" };
+					}
+					else {
+						return { color: "#0000ff" };
+					}
+				}
+			}).addTo(map);
+
+			L.geoJSON(geoNonPlayArea, {
+				pointToLayer: function (feature, latlng) {
+					return L.circleMarker(latlng, nonPlayAreaOptions);
+				}
+			}).addTo(map);
 		</script>
 	</body>
 </html>
