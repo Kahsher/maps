@@ -206,10 +206,10 @@
 			L.geoJSON(geoMap, {
 				style: function(feature) {
 					if (feature.properties.gamearea) {
-						return {color: #ff0000};
+						return {color: "#ff0000"};
 					}
 					else {
-						return {color: #0000ff};
+						return {color: "#0000ff"};
 					}
 				}
 			}).addTo(map);
@@ -239,7 +239,7 @@
 				attribution: '© GoogleMaps'
 			});
 			var map = L.map('map', {
-				center: [39.921161, -7.903330],
+				center: [39.903709300754876, -7.791813546839541],
 				zoom: 15,
 				layers: [osm, googleHybrid, googleSat]
 			});
