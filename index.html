@@ -488,28 +488,6 @@
 			};
 
 			var layerControl = L.control.layers(baseLayers, overlays).addTo(map);
-
-			L.geoJSON(geoMap, {
-				style: function (feature) {
-					if (feature.properties.gamearea) {
-						return { color: "#ff0000", opacity: 0.1 };
-					}
-					else {
-						return { color: "#0000ff", opacity: 0.1 };
-					}
-				}
-			}).addTo(map);
-
-			L.geoJSON(geoNonPlayArea, {
-				style: function (feature) {
-					if (feature.properties.gamearea) {
-						return { color: "#ff0000", opacity: 0.1 };
-					}
-					else {
-						return { color: "#0000ff", opacity: 0.1 };
-					}
-				}
-			}).addTo(map);
 			
 			var lat1 = 39.8825;
 			var lat2 = 39.9309;
@@ -566,6 +544,28 @@
 				L.geoJSON(objGeo).addTo(map);
 				lat = lat + 0.0022;
 			}
+			
+			L.geoJSON(geoMap, {
+				style: function (feature) {
+					if (feature.properties.gamearea) {
+						return { color: "#ff0000", opacity: 0.1 };
+					}
+					else {
+						return { color: "#0000ff", opacity: 0.1 };
+					}
+				}
+			}).addTo(map);
+
+			L.geoJSON(geoNonPlayArea, {
+				style: function (feature) {
+					if (feature.properties.gamearea) {
+						return { color: "#ff0000", opacity: 0.1 };
+					}
+					else {
+						return { color: "#0000ff", opacity: 0.1 };
+					}
+				}
+			}).addTo(map);
 			
 			map.on('click', function(e) {
 				var coord = e.latlng;
