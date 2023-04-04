@@ -456,9 +456,7 @@
 
 			var markers = L.layerGroup();
 
-			var poi1 = L.marker([39.9082, -7.8023]).bindPopup('Medronho').addTo(markers);
-			var poi1 = L.marker([39.9210, -7.7951]).bindPopup('Anti-medronho').addTo(markers);
-			var poi1 = L.marker([39.8889, -7.7794]).bindPopup('Máfia').addTo(markers);
+			
 			
 			var markersLetters = [];
 
@@ -486,11 +484,6 @@
 				'Sattelite': googleSat,
 				'Hybrid': googleHybrid,
 				'Street': osm
-			};
-			map.addLayer(markers);
-
-			var overlays = {
-				'Markers': markers
 			};
 
 			var layerControl = L.control.layers(baseLayers, overlays).addTo(map);
@@ -589,7 +582,7 @@
 						return { color: "#ff0000", opacity: 0.1 };
 					}
 					else {
-						return { color: "#0000ff", opacity: 0.1 };
+						return { color: "#808080", opacity: 0.1 };
 					}
 				}
 			}).addTo(map);
@@ -600,7 +593,7 @@
 						return { color: "#ff0000", opacity: 0.1 };
 					}
 					else {
-						return { color: "#0000ff", opacity: 0.1 };
+						return { color: "#808080", opacity: 0.1 };
 					}
 				}
 			}).addTo(map);
@@ -609,8 +602,26 @@
 				icon: 'fa-solid fa-a',
 				markerColor: 'red'
 			});
+			
+			var blueMarker = L.AwesomeMarkers.icon({
+				icon: 'fa-solid fa-b',
+				markerColor: 'blue'
+			});
+			
+			var whiteMarker = L.AwesomeMarkers.icon({
+				icon: 'fa-solid fa-c',
+				markerColor: 'white'
+			});
+			
+			var poi1 = L.marker([39.9082, -7.8023], {icon: redMarker}).bindPopup('Medronho').addTo(markers);
+			var poi1 = L.marker([39.9210, -7.7951], {icon: blueMarker}).bindPopup('Anti-medronho').addTo(markers);
+			var poi1 = L.marker([39.8889, -7.7794], {icon: whiteMarker}).bindPopup('Máfia').addTo(markers);
 
-			L.marker([51.941196,4.512291], {icon: redMarker}).addTo(map);
+			map.addLayer(markers);
+
+			var overlays = {
+				'Markers': markers
+			};
 			
 			map.on('click', function(e) {
 				var coord = e.latlng;
