@@ -584,6 +584,24 @@
 				var lng = coord.lng;
 				console.log("You clicked the map at latitude: " + lat + " and longitude: " + lng);
 			});
+			
+			var ciLayer = L.canvasIconLayer({}).addTo(map);
+
+			    ciLayer.addOnClickListener(function (e,data) {console.log(data)});
+			    ciLayer.addOnHoverListener(function (e,data) {console.log(data[0].data._leaflet_id)});
+
+			    var icon = L.icon({
+			      iconUrl: 'img/pothole.png',
+			      iconSize: [20, 18],
+			      iconAnchor: [10, 9]
+			    });
+
+			  var markers = [];
+			    for (var i = 0; i < 10000; i++) {
+			      var marker = L.marker([58.5578 + Math.random()*1.8, 29.0087 + Math.random()*3.6], {icon: icon}).bindPopup("I Am "+i);
+			    markers.push(marker);
+			    }
+			  ciLayer.addLayers(markers);
 		</script>
 	</body>
 </html>
