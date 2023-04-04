@@ -459,6 +459,8 @@
 			var poi1 = L.marker([39.9082, -7.8023]).bindPopup('Medronho').addTo(markers);
 			var poi1 = L.marker([39.9210, -7.7951]).bindPopup('Anti-medronho').addTo(markers);
 			var poi1 = L.marker([39.8889, -7.7794]).bindPopup('Máfia').addTo(markers);
+			
+			var markersLetters = [];
 
 			var osm = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
 				maxZoom: 18,
@@ -493,15 +495,28 @@
 
 			var layerControl = L.control.layers(baseLayers, overlays).addTo(map);
 			
+			var ciLayer = L.canvasIconLayer({}).addTo(map);
+			var alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+			
 			var lat1 = 39.8825;
 			var lat2 = 39.9309;
 			var lng1 = -7.8180;
 			var lng2 = -7.7580;
-
+			
+			var iconlat = 39.92979710861469;
+			var iconlng = -7.819626331329347;
 
 			var lng = lng1
 			for (i = 0; i < 21; i++) {
-
+				var icon = L.icon({
+					iconUrl: 'images/'+alphabet.charAt(i)+'.svg',
+					iconSize: [20, 18],
+					iconAnchor: [10, 9]
+				});
+				
+				var marker = L.marker([iconlat, iconlng], {icon: icon});
+			    	markersLetters.push(marker);
+				
 				var objGeo = {
 					"type": "Feature",
 					"properties": {},
@@ -521,6 +536,7 @@
 				};
 				L.geoJSON(objGeo).addTo(map);
 				lng = lng + 0.0030;
+				iconlng = iconlng + 0.0030;
 			}
 
 
@@ -584,24 +600,7 @@
 				var lng = coord.lng;
 				console.log("You clicked the map at latitude: " + lat + " and longitude: " + lng);
 			});
-			
-			var ciLayer = L.canvasIconLayer({}).addTo(map);
-
-			    ciLayer.addOnClickListener(function (e,data) {console.log(data)});
-			    ciLayer.addOnHoverListener(function (e,data) {console.log(data[0].data._leaflet_id)});
-
-			    var icon = L.icon({
-			      iconUrl: 'images/A.svg',
-			      iconSize: [20, 18],
-			      iconAnchor: [10, 9]
-			    });
-
-			  var markers = [];
-			    for (var i = 0; i < 10000; i++) {
-			      var marker = L.marker([58.5578 + Math.random()*1.8, 29.0087 + Math.random()*3.6], {icon: icon}).bindPopup("I Am "+i);
-			    markers.push(marker);
-			    }
-			  ciLayer.addLayers(markers);
+			ciLayer.addLayers(markersLetters);
 		</script>
 	</body>
 </html>
