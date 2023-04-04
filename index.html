@@ -502,9 +502,9 @@
 			var lat2 = 39.9309;
 			var lng1 = -7.8180;
 			var lng2 = -7.7580;
-			
-			var iconlat = 39.92979710861469;
-			var iconlng = -7.819626331329347;
+			// and longitude: 
+			var iconlat = 39.929788881405194 + 0.0022
+			var iconlng = -7.816493511199952;
 
 			var lng = lng1
 			for (i = 0; i < 21; i++) {
@@ -515,7 +515,10 @@
 				});
 				
 				var marker = L.marker([iconlat, iconlng], {icon: icon});
-			    	markersLetters.push(marker);
+				
+				if (i < 20) {
+			    		markersLetters.push(marker);
+				}
 				
 				var objGeo = {
 					"type": "Feature",
