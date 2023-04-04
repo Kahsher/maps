@@ -496,7 +496,7 @@
 			var layerControl = L.control.layers(baseLayers, overlays).addTo(map);
 			
 			var ciLayer = L.canvasIconLayer({}).addTo(map);
-			var alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+			
 			
 			var lat1 = 39.8825;
 			var lat2 = 39.9309;
@@ -509,7 +509,7 @@
 			var lng = lng1
 			for (i = 0; i < 21; i++) {
 				var icon = L.icon({
-					iconUrl: 'images/'+alphabet.charAt(i)+'.svg',
+					iconUrl: 'images/'+i+'.svg',
 					iconSize: [20, 18],
 					iconAnchor: [10, 9]
 				});
@@ -544,8 +544,22 @@
 
 
 			var lat = lat1;
+			var alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+			var iconlat = 39.929788881405194;
+			var iconlng = -7.816493511199952 + 0.0030;
 
 			for (i = 0; i < 23; i++) {
+				var icon = L.icon({
+					iconUrl: 'images/'+alphabet.charAt(i)+'.svg',
+					iconSize: [20, 18],
+					iconAnchor: [10, 9]
+				});
+				
+				var marker = L.marker([iconlat, iconlng], {icon: icon});
+				
+				if (i < 22) {
+			    		markersLetters.push(marker);
+				}
 
 				var objGeo = {
 					"type": "Feature",
@@ -566,6 +580,7 @@
 				};
 				L.geoJSON(objGeo).addTo(map);
 				lat = lat + 0.0022;
+				iconlat = iconlat + 0.0022;
 			}
 			
 			L.geoJSON(geoMap, {
