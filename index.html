@@ -546,11 +546,10 @@
 			var lat = lat1;
 			var alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 			var iconlat = 39.929788881405194;
-			var iconlng = -7.816493511199952 + 0.0030;
 
 			for (i = 0; i < 23; i++) {
 				var icon = L.icon({
-					iconUrl: 'images/'+alphabet.charAt(i)+'.svg',
+					iconUrl: 'images/'+alphabet.charAt(23-i)+'.svg',
 					iconSize: [20, 18],
 					iconAnchor: [10, 9]
 				});
