@@ -1,8 +1,11 @@
 <html>
 	<head>
 		<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI=" crossorigin="" />
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 		<script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js" integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM=" crossorigin=""></script>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<link rel="stylesheet" href="leaflet.awesome-markers.css">
+		<script src="leaflet.awesome-markers.min.js"></script>
 		<style>
 			body {
 				padding: 0;
@@ -566,6 +569,13 @@
 					}
 				}
 			}).addTo(map);
+			
+			var redMarker = L.AwesomeMarkers.icon({
+				icon: 'coffee',
+				markerColor: 'red'
+			});
+
+			L.marker([51.941196,4.512291], {icon: redMarker}).addTo(map);
 			
 			map.on('click', function(e) {
 				var coord = e.latlng;
