@@ -617,13 +617,25 @@
 			//L.marker([39.9082, -7.8023], {icon: redMarker}).bindPopup('Medronho').addTo(markers);
 			//L.marker([39.9210, -7.7951], {icon: blueMarker}).bindPopup('Anti-medronho').addTo(markers);
 			//L.marker([39.8889, -7.7794], {icon: blackMarker}).bindPopup('Máfia').addTo(markers);
+			
+			var icon = L.icon({
+				iconUrl: 'images/USAC_LOGO_TRANSPARENT.svg.svg',
+				iconSize: [20, 18],
+				iconAnchor: [10, 9]
+			});
+
+			var marker = L.marker([iconlat, iconlng], {icon: icon});
+
+			if (i < 22) {
+				markersLetters.push(marker);
+			}
 
 			//map.addLayer(markers);
 
 			var overlays = {
 				'Markers': markers
 			};
-			
+			//39.92711498594037 and longitude: -7.745790481567384
 			map.on('click', function(e) {
 				var coord = e.latlng;
 				var lat = coord.lat;
