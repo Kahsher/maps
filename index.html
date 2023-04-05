@@ -624,18 +624,15 @@
 				iconAnchor: [10, 9]
 			});
 
-			var marker = L.marker([iconlat, iconlng], {icon: icon});
-
-			if (i < 22) {
-				markersLetters.push(marker);
-			}
-
-			//map.addLayer(markers);
+			var marker = L.marker([39.92711498594037, -7.745790481567384], {icon: icon});
+			markersLetters.push(marker);
+			
+			map.addLayer(markers);
 
 			var overlays = {
 				'Markers': markers
 			};
-			//39.92711498594037 and longitude: -7.745790481567384
+			// and longitude: 
 			map.on('click', function(e) {
 				var coord = e.latlng;
 				var lat = coord.lat;
