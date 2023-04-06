@@ -539,8 +539,10 @@
 						"type": "LineString"
 					}
 				};
-				L.geoJSON(objGeo, style: function (feature) {
-					return { color: "#10aee2", opacity: 1, weight: 1 };
+				L.geoJSON(objGeo, {
+					style: function (feature) {
+						return { color: "#10aee2", opacity: 1, weight: 1 };
+					}
 				}).addTo(map);
 				lng = lng + 0.0030;
 				iconlng = iconlng + 0.0030;
@@ -582,8 +584,10 @@
 						"type": "LineString"
 					}
 				};
-				L.geoJSON(objGeo, style: function (feature) {
-					return { color: "#10aee2", opacity: 1, weight: 1 };
+				L.geoJSON(objGeo, {
+					style: function (feature) {
+						return { color: "#10aee2", opacity: 1, weight: 1 };
+					}
 				}).addTo(map);
 				lat = lat + 0.0022;
 				iconlat = iconlat + 0.0022;
