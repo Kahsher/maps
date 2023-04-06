@@ -179,7 +179,7 @@
 							]
 						]
 					],
-					"type": "MultiLineString"
+					"type": "MultiLineString" // Polygon
 				}
 			};
 			
@@ -187,7 +187,7 @@
 				"type": "Feature",
 				"properties": {},
 				"geometry": {
-					"type": "Polygon",
+					"type": "MultiLineString", // Polygon
 					"coordinates": [
 						[
 							[
@@ -588,7 +588,7 @@
 			L.geoJSON(geoMap, {
 				style: function (feature) {
 					if (feature.properties.gamearea) {
-						return { color: "#ff0000", opacity: 0.1 };
+						return { color: "#ff0000", opacity: 1 };
 					}
 					else {
 						return { color: "#808080", opacity: 1 };
@@ -599,7 +599,7 @@
 			L.geoJSON(geoNonPlayArea, {
 				style: function (feature) {
 					if (feature.properties.gamearea) {
-						return { color: "#ff0000", opacity: 0.1 };
+						return { color: "#ff0000", opacity: 1 };
 					}
 					else {
 						return { color: "#808080", opacity: 1 };
