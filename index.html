@@ -539,7 +539,9 @@
 						"type": "LineString"
 					}
 				};
-				L.geoJSON(objGeo).addTo(map);
+				L.geoJSON(objGeo, style: function (feature) {
+					return { color: "#10aee2", opacity: 1, weight: 1 };
+				}).addTo(map);
 				lng = lng + 0.0030;
 				iconlng = iconlng + 0.0030;
 			}
@@ -580,7 +582,9 @@
 						"type": "LineString"
 					}
 				};
-				L.geoJSON(objGeo).addTo(map);
+				L.geoJSON(objGeo, style: function (feature) {
+					return { color: "#10aee2", opacity: 1, weight: 1 };
+				}).addTo(map);
 				lat = lat + 0.0022;
 				iconlat = iconlat + 0.0022;
 			}
@@ -588,10 +592,10 @@
 			L.geoJSON(geoMap, {
 				style: function (feature) {
 					if (feature.properties.gamearea) {
-						return { color: "#ff0000", opacity: 1 };
+						return { color: "#ff0000", opacity: 1, weight: 1 };
 					}
 					else {
-						return { color: "#808080", opacity: 1 };
+						return { color: "#808080", opacity: 1, weight: 1 };
 					}
 				}
 			}).addTo(map);
@@ -599,7 +603,7 @@
 			L.geoJSON(geoNonPlayArea, {
 				style: function (feature) {
 					if (feature.properties.gamearea) {
-						return { color: "#ff0000", opacity: 1 };
+						return { color: "#ff0000", opacity: 1, weight: 1 };
 					}
 					else {
 						return { color: "#808080", opacity: 1 };
