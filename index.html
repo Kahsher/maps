@@ -541,7 +541,7 @@
 				};
 				L.geoJSON(objGeo, {
 					style: function (feature) {
-						return { color: "#000", opacity: 1, weight: 1 };
+						return { opacity: 1, weight: 1 };
 					}
 				}).addTo(map);
 				lng = lng + 0.0030;
@@ -586,7 +586,7 @@
 				};
 				L.geoJSON(objGeo, {
 					style: function (feature) {
-						return { color: "#000", opacity: 1, weight: 1 };
+						return { opacity: 1, weight: 1 };
 					}
 				}).addTo(map);
 				lat = lat + 0.0022;
@@ -596,10 +596,10 @@
 			L.geoJSON(geoMap, {
 				style: function (feature) {
 					if (feature.properties.gamearea) {
-						return { color: "#ff0000", opacity: 1, weight: 1 };
+						return { color: "#FF0000", opacity: 1, weight: 5 };
 					}
 					else {
-						return { color: "#808080", opacity: 1, weight: 1 };
+						return { color: "#FFA500", opacity: 1, weight: 5 };
 					}
 				}
 			}).addTo(map);
@@ -607,10 +607,10 @@
 			L.geoJSON(geoNonPlayArea, {
 				style: function (feature) {
 					if (feature.properties.gamearea) {
-						return { color: "#ff0000", opacity: 1, weight: 1 };
+						return { color: "#FF0000", opacity: 1, weight: 5 };
 					}
 					else {
-						return { color: "#808080", opacity: 1 };
+						return { color: "#FFA500", opacity: 1, weight: 5 };
 					}
 				}
 			}).addTo(map);
