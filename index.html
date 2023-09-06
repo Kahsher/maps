@@ -456,11 +456,7 @@
 			}
 
 			var markers = L.layerGroup();
-
-			
-			
 			var markersLetters = [];
-
 			var osm = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
 				maxZoom: 18,
 				attribution: '© OpenStreetMap'
@@ -630,9 +626,9 @@
 				markerColor: 'black'
 			});
 			
-			//L.marker([39.9082, -7.8023], {icon: redMarker}).bindPopup('Medronho').addTo(markers);
-			//L.marker([39.9210, -7.7951], {icon: blueMarker}).bindPopup('Anti-medronho').addTo(markers);
-			//L.marker([39.8889, -7.7794], {icon: blackMarker}).bindPopup('Máfia').addTo(markers);
+			L.marker([39.9082, -7.8023], {icon: redMarker}).bindPopup('Medronho').addTo(markers);
+			L.marker([39.9210, -7.7951], {icon: blueMarker}).bindPopup('Anti-medronho').addTo(markers);
+			L.marker([39.8889, -7.7794], {icon: blackMarker}).bindPopup('Máfia').addTo(markers);
 			
 			
 			
