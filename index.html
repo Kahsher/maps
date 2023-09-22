@@ -455,7 +455,9 @@
 				}
 			}
 
-            var activeMarkers = false;
+			var activeMarkerTeamBlue = true;
+			var activeMarkerTeamRed = false;
+			var activeMarkerTeamBlack = false;
 
 			var markers = L.layerGroup();
 			var markersLetters = [];
@@ -628,12 +630,15 @@
 				markerColor: 'black'
 			});
 			
-            if (activeMarkers) {
+            if (activeMarkerTeamRed) {
 			    L.marker([39.9082, -7.8023], {icon: redMarker}).bindPopup('Anti-Medronho').addTo(markers);
-			    L.marker([39.9210, -7.7951], {icon: blueMarker}).bindPopup('Medronho').addTo(markers);
-			    L.marker([39.8889, -7.7794], {icon: blackMarker}).bindPopup('Máfia').addTo(markers);
             }
-			
+			if (activeMarkerTeamBlue) {
+				L.marker([39.9210, -7.7951], {icon: blueMarker}).bindPopup('Medronho').addTo(markers);
+			}
+			if (activeMarkerTeamBlack) {
+				L.marker([39.8889, -7.7794], {icon: blackMarker}).bindPopup('Máfia').addTo(markers);
+			}
 			
 			map.addLayer(markers);
 
